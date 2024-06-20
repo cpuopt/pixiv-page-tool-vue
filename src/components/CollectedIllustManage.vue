@@ -175,28 +175,33 @@ class Request {
         rest
       );
       idList = [...idList, ..._idList];
+      addLog(props.message, `获取到${idList.length}个作品`);
     }
     return idList;
   }
   static async setPrivate(idList) {
     while (idList.length > 0) {
       await this._edit_restrict(idList.splice(0, this.batch), this.restrict.private);
+      addLog(props.message, `转为不公开，剩余${idList.length}个`);
     }
   }
 
   static async setPublic(idList) {
     while (idList.length > 0) {
       await this._edit_restrict(idList.splice(0, this.batch), this.restrict.public);
+      addLog(props.message, `转为公开，剩余${idList.length}个`);
     }
   }
   static async setTag(idList, tag) {
     while (idList.length > 0) {
       await this._add_tags(idList.splice(0, this.batch), tag);
+      addLog(props.message, `设置分类，剩余${idList.length}个`);
     }
   }
   static async removeTag(idList, tag) {
     while (idList.length > 0) {
       await this._remove_tags(idList.splice(0, this.batch), tag);
+      addLog(props.message, `移除分类，剩余${idList.length}个`);
     }
   }
 }

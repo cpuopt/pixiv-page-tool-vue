@@ -334,7 +334,7 @@ div {
 }
 .main-message {
   margin-top: auto;
-  height: 3rem;
+  height: 5rem;
   padding: 0.2rem;
   display: flex;
   flex-direction: column;
