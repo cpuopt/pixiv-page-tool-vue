@@ -11,6 +11,6 @@
       transform=""
       fill-rule="evenodd"
       clip-rule="evenodd"
-    ></path>
+    ></path> //已关注用户作品图标
   </svg>
 </template>

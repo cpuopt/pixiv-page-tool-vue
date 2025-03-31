@@ -147,8 +147,8 @@ class Request {
         .post(
           url,
           {
-            bookmarkIds: bookmarkIds,
             removeTags: [tag],
+            bookmarkIds: bookmarkIds,
           },
           {
             headers: {
@@ -175,8 +175,8 @@ class Request {
         rest
       );
       idList = [...idList, ..._idList];
-      addLog(props.message, `获取到${idList.length}个作品`);
     }
+    addLog(props.message, `获取到${idList.length}个作品`);
     return idList;
   }
   static async setPrivate(idList) {
@@ -229,6 +229,8 @@ const turnHide = async () => {
     addLog(props.message, `tag='${targetTag}' 作品转为不公开，即将开始`);
     const uid = window.location.pathname.match(/users\/(\d+)\//)[1];
     const idlist = await Request.getBookmarksByTag(uid, targetTag, "show");
+    console.log(idlist.length);
+
     await Request.setPrivate(idlist);
   }
 };

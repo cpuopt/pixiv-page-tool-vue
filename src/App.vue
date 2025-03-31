@@ -122,37 +122,38 @@ window.onload = () => {
                 <el-header height="30px" class="panel-header"><el-link :underline="false" class="header-text">Pixiv-Page-Tool</el-link></el-header>
                 <el-container>
                     <el-aside class="panel-aside">
-                        <el-button v-show="LOCATION != LocationTYPE.Mainpage" type="primary" plain class="aside-icon-button" @click="PixivNavigation.toHome()">
+                        <el-button title="主页" v-show="LOCATION != LocationTYPE.Mainpage" type="primary" plain class="aside-icon-button" @click="PixivNavigation.toHome()">
                             <el-icon size="20" color="#FFFFFF">
                                 <HomeFilled />
                             </el-icon>
                         </el-button>
 
-                        <el-button v-show="LOCATION == LocationTYPE.Mainpage" type="primary" plain class="aside-icon-button-activated">
+                        <el-button title="主页" v-show="LOCATION == LocationTYPE.Mainpage" type="primary" plain class="aside-icon-button-activated">
                             <el-icon size="20" color="#FFFFFF">
                                 <HomeFilled />
                             </el-icon>
                         </el-button>
 
-                        <el-button v-show="!LocationUNIONTYPE.Collection.includes(LOCATION)" type="primary" plain class="aside-icon-button" @click="PixivNavigation.toBookmark()">
+                        <el-button title="已收藏作品" v-show="!LocationUNIONTYPE.Collection.includes(LOCATION)" type="primary" plain class="aside-icon-button" @click="PixivNavigation.toBookmark()">
                             <el-icon size="20" color="#FFFFFF">
                                 <Collection />
                             </el-icon>
                         </el-button>
 
-                        <el-button v-show="LocationUNIONTYPE.Collection.includes(LOCATION)" type="primary" plain class="aside-icon-button-activated">
+                        <el-button title="已收藏作品" v-show="LocationUNIONTYPE.Collection.includes(LOCATION)" type="primary" plain class="aside-icon-button-activated">
                             <el-icon size="20" color="#FFFFFF">
                                 <Collection />
                             </el-icon>
                         </el-button>
 
-                        <el-button v-show="LOCATION == LocationTYPE.NewIllust || LOCATION == LocationTYPE.NewIllustR18" type="primary" plain class="aside-icon-button-activated">
+                        <el-button title="已关注用户的新作" v-show="LOCATION == LocationTYPE.NewIllust || LOCATION == LocationTYPE.NewIllustR18" type="primary" plain class="aside-icon-button-activated">
                             <el-icon size="20" color="#FFFFFF">
                                 <UserDouble />
                             </el-icon>
                         </el-button>
 
                         <el-button
+                            title="已关注用户的新作"
                             v-show="LOCATION != LocationTYPE.NewIllust && LOCATION != LocationTYPE.NewIllustR18"
                             type="primary"
                             plain
@@ -172,7 +173,7 @@ window.onload = () => {
                         </div>
                         <div class="main-message">
                             <el-scrollbar>
-                                <div v-for="msg in MESSAGE" style="font-size: small">
+                                <div v-for="(msg,index) in MESSAGE" :key="index" style="font-size: small">
                                     {{ msg }}
                                     <br />
                                 </div>
