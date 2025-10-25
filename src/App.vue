@@ -8,6 +8,7 @@ import CollectedIllustManage from './components/CollectedIllustManage.vue';
 import { LocationTYPE, LocationUNIONTYPE, check } from './utils/LocationType.js';
 import chalk from 'chalk';
 import UserDouble from './svg/UserDouble.vue';
+import StyleControl from './components/StyleControl.vue';
 /**
  * LOCATION 响应式对象 当前路由路径
  */
@@ -179,6 +180,7 @@ window.onload = () => {
                             <el-button v-show="LocationUNIONTYPE.NewIllust.includes(LOCATION)" class="main-button" type="success" plain @click="add2Collect()">收藏本页所有作品</el-button>
                             <HideCollectedIllust v-if="LocationUNIONTYPE.NewIllust.includes(LOCATION) || LocationUNIONTYPE.Search.includes(LOCATION) || LocationUNIONTYPE.Users.includes(LOCATION)" />
                             <CollectedIllustManage v-if="LocationUNIONTYPE.Collection.includes(LOCATION)" :location="LOCATION" :message="MESSAGE" />
+                            <StyleControl />
                         </div>
                         <div class="main-message">
                             <el-scrollbar>

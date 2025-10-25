@@ -1,0 +1,68 @@
+body[styleControl] {
+    .userHomeWrapper {
+        width: auto !important;
+        & > div:first-child {
+        }
+        & > div:nth-child(2),
+        & > div:nth-child(3) {
+            & > div {
+                width: auto !important;
+                & > ul {
+                    row-gap: 2px;
+                    column-gap: 2px;
+                    & > li {
+                        margin: 0 !important;
+                        width: unset !important;
+                        & > div {
+                            position: relative;
+                            width: unset !important;
+                            & > div:first-child {
+                                border-radius: 0 !important;
+                                & > div {
+                                    width: fit-content !important;
+                                    height: unset !important;
+                                    & > a {
+                                        width: fit-content !important;
+                                        & > div {
+                                            width: fit-content !important;
+                                            height: unset !important;
+                                            & > div {
+                                                width: fit-content !important;
+                                                & > img {
+                                                    height: 20rem;
+                                                    width: auto;
+                                                    border-radius: 0 !important;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    & > div {
+                                    }
+                                }
+                            }
+
+                            & > div:last-child {
+                                /* 标题*/
+                                margin-top: 0 !important;
+                                position: absolute;
+                                box-sizing: border-box !important;
+                                bottom: 0;
+                                padding-top: 1rem;
+                                padding-bottom: 1rem;
+                                padding-inline: 1rem 1rem;
+                                max-width: calc(100% - 32px);
+                                overflow: hidden;
+                                & > a {
+                                    // text-shadow: 1px 1px 0 black, -1px 1px 0 black, 1px -1px 0 black, -1px -1px 0 black;
+                                    overflow: visible;
+                                    text-overflow: ellipsis;
+                                    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.6);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
