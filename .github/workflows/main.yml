@@ -30,4 +30,4 @@ jobs:
               uses: actions/upload-artifact@v4
               with:
                 name: pixiv-page-tool-vue-${{ github.sha }}.zip
-                path: ./dist/pixiv-page-tool-vue.user.js
+                path: ./dist/pixiv-page-tool.user.js
