@@ -5,6 +5,7 @@ const LocationTYPE = Object.freeze({
     Mainpage: '主页',
     Artworks: '作品页',
     Users: '用户主页',
+    UsersAll: '用户主页查看全部',
     NewIllust: '已关注用户的作品 全部',
     NewIllustR18: '已关注用户的作品 R-18',
     CollectionRoot: '收藏 插画·漫画 全部 公开',
@@ -32,7 +33,8 @@ const LocationUNIONTYPE = Object.freeze({
     CollectionHide: [LocationTYPE.CollectionRootHide, LocationTYPE.CollectionTagHide, LocationTYPE.CollectionUnTagedHide],
     CollectionUnTaged: [LocationTYPE.CollectionUnTaged, LocationTYPE.CollectionUnTagedHide],
     CollectionTaged: [LocationTYPE.CollectionTag, LocationTYPE.CollectionTagHide],
-    Search: [LocationTYPE.tags, LocationTYPE.tags_artworks, LocationTYPE.illustrations]
+    Search: [LocationTYPE.tags, LocationTYPE.tags_artworks, LocationTYPE.illustrations],
+    Users: [LocationTYPE.Users, LocationTYPE.UsersAll]
 });
 /**
  *  LOCATION 路由路径枚举类与链接正则的映射
@@ -43,6 +45,7 @@ const locationMap = {
     [LocationTYPE.Mainpage]: [/^\/$/],
     [LocationTYPE.Artworks]: [/^\/artworks\/\d+$/],
     [LocationTYPE.Users]: [/^\/users\/\d+$/],
+    [LocationTYPE.UsersAll]: [/^\/users\/\d+\/artworks$/],
 
     [LocationTYPE.CollectionRoot]: [/^\/users\/\d+\/bookmarks\/artworks(\?p=\d+?)?$/],
     [LocationTYPE.CollectionRootHide]: [/^\/users\/\d+\/bookmarks\/artworks\?(p=\d+\&)?(rest=hide)$/],
@@ -72,6 +75,7 @@ function test() {
         [LocationTYPE.Mainpage]: ['/'],
         [LocationTYPE.Artworks]: ['/artworks/118646537'],
         [LocationTYPE.Users]: ['/users/69600480'],
+        [LocationTYPE.UsersAll]: ['/users/87595559/artworks'],
         [LocationTYPE.CollectionRoot]: ['/users/57540329/bookmarks/artworks', '/users/57540329/bookmarks/artworks?p=2', '/users/57540329/bookmarks/artworks?p=10'],
         [LocationTYPE.CollectionRootHide]: ['/users/57540329/bookmarks/artworks?rest=hide', '/users/57540329/bookmarks/artworks?p=2&rest=hide', '/users/57540329/bookmarks/artworks?p=10&rest=hide'],
         [LocationTYPE.CollectionTag]: ['/users/57540329/bookmarks/artworks/123123', '/users/57540329/bookmarks/artworks/123123?p=2', '/users/57540329/bookmarks/artworks/123123?p=10'],
