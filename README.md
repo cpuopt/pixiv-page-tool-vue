@@ -1,7 +1,12 @@
-# Vue 3 + Vite
+# pixiv-page-tool-vue
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+pixiv.net网页便捷工具
 
-## Recommended IDE Setup
+## 主要功能
+### 收藏本页全部作品
+<img width="200" height="300" alt="截图 2025-10-26 08 07 52" src="https://github.com/user-attachments/assets/3f7691fd-8264-44bc-bead-e498e90be29d" />
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+### 隐藏已收藏的作品
+### 样式优化
+### 批量修改已收藏作品状态（已收藏/未收藏）
+### 批量为收藏夹作品添加/移除标记
