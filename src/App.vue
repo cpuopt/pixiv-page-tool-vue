@@ -9,6 +9,7 @@ import { LocationTYPE, LocationUNIONTYPE, check } from './utils/LocationType.js'
 import chalk from 'chalk';
 import UserDouble from './svg/UserDouble.vue';
 import StyleControl from './components/StyleControl.vue';
+import { _debounce_findSpecialEl, _debounce_replaceAllImage, _throttle_findSpecialEl, _throttle_replaceAllImage } from './utils/ShowLargerThumbnails.ts';
 /**
  * LOCATION 响应式对象 当前路由路径
  */
@@ -116,6 +117,22 @@ function updateToken() {
 window.onload = () => {
     checkLocation();
     updateToken();
+    // _debounce_findSpecialEl()
+    // _debounce_replaceAllImage()
+    _throttle_findSpecialEl()
+    _throttle_replaceAllImage()
+    const observer = new MutationObserver(async (mutationsList, observer) => {
+        // _debounce_findSpecialEl();
+        // _debounce_replaceAllImage()
+        _throttle_findSpecialEl()
+        _throttle_replaceAllImage()
+    });
+    observer.observe(document.body, {
+        childList: true,         // 监听子节点的增删
+        subtree: true,           // 可选：监听后代节点
+        attributes: false,       // 可选
+        characterData: false     // 可选
+    })
 };
 </script>
 
@@ -130,46 +147,47 @@ window.onload = () => {
 
         <div style="display: flex; width: 100; height: 100%">
             <el-container>
-                <el-header height="30px" class="panel-header"><el-link :underline="false" class="header-text">Pixiv-Page-Tool</el-link></el-header>
+                <el-header height="30px" class="panel-header"><el-link :underline="false"
+                        class="header-text">Pixiv-Page-Tool</el-link></el-header>
                 <el-container>
                     <el-aside class="panel-aside">
-                        <el-button v-show="LOCATION != LocationTYPE.Mainpage" type="primary" plain class="aside-icon-button" @click="PixivNavigation.toHome()">
+                        <el-button v-show="LOCATION != LocationTYPE.Mainpage" type="primary" plain
+                            class="aside-icon-button" @click="PixivNavigation.toHome()">
                             <el-icon size="20" color="#FFFFFF">
                                 <HomeFilled />
                             </el-icon>
                         </el-button>
 
-                        <el-button v-show="LOCATION == LocationTYPE.Mainpage" type="primary" plain class="aside-icon-button-activated">
+                        <el-button v-show="LOCATION == LocationTYPE.Mainpage" type="primary" plain
+                            class="aside-icon-button-activated">
                             <el-icon size="20" color="#FFFFFF">
                                 <HomeFilled />
                             </el-icon>
                         </el-button>
 
-                        <el-button v-show="!LocationUNIONTYPE.Collection.includes(LOCATION)" type="primary" plain class="aside-icon-button" @click="PixivNavigation.toBookmark()">
+                        <el-button v-show="!LocationUNIONTYPE.Collection.includes(LOCATION)" type="primary" plain
+                            class="aside-icon-button" @click="PixivNavigation.toBookmark()">
                             <el-icon size="20" color="#FFFFFF">
                                 <Collection />
                             </el-icon>
                         </el-button>
 
-                        <el-button v-show="LocationUNIONTYPE.Collection.includes(LOCATION)" type="primary" plain class="aside-icon-button-activated">
+                        <el-button v-show="LocationUNIONTYPE.Collection.includes(LOCATION)" type="primary" plain
+                            class="aside-icon-button-activated">
                             <el-icon size="20" color="#FFFFFF">
                                 <Collection />
                             </el-icon>
                         </el-button>
 
-                        <el-button v-show="LOCATION == LocationTYPE.NewIllust || LOCATION == LocationTYPE.NewIllustR18" type="primary" plain class="aside-icon-button-activated">
+                        <el-button v-show="LOCATION == LocationTYPE.NewIllust || LOCATION == LocationTYPE.NewIllustR18"
+                            type="primary" plain class="aside-icon-button-activated">
                             <el-icon size="20" color="#FFFFFF">
                                 <UserDouble />
                             </el-icon>
                         </el-button>
 
-                        <el-button
-                            v-show="LOCATION != LocationTYPE.NewIllust && LOCATION != LocationTYPE.NewIllustR18"
-                            type="primary"
-                            plain
-                            class="aside-icon-button"
-                            @click="PixivNavigation.toSubscription()"
-                        >
+                        <el-button v-show="LOCATION != LocationTYPE.NewIllust && LOCATION != LocationTYPE.NewIllustR18"
+                            type="primary" plain class="aside-icon-button" @click="PixivNavigation.toSubscription()">
                             <el-icon size="20" color="#FFFFFF">
                                 <UserDouble />
                             </el-icon>
@@ -177,9 +195,12 @@ window.onload = () => {
                     </el-aside>
                     <el-main class="panel-main">
                         <div class="main-button-group">
-                            <el-button v-show="LocationUNIONTYPE.NewIllust.includes(LOCATION)" class="main-button" type="success" plain @click="add2Collect()">收藏本页所有作品</el-button>
-                            <HideCollectedIllust v-if="LocationUNIONTYPE.NewIllust.includes(LOCATION) || LocationUNIONTYPE.Search.includes(LOCATION) || LocationUNIONTYPE.Users.includes(LOCATION)" />
-                            <CollectedIllustManage v-if="LocationUNIONTYPE.Collection.includes(LOCATION)" :location="LOCATION" :message="MESSAGE" />
+                            <el-button v-show="LocationUNIONTYPE.NewIllust.includes(LOCATION)" class="main-button"
+                                type="success" plain @click="add2Collect()">收藏本页所有作品</el-button>
+                            <HideCollectedIllust
+                                v-if="LocationUNIONTYPE.NewIllust.includes(LOCATION) || LocationUNIONTYPE.Search.includes(LOCATION) || LocationUNIONTYPE.Users.includes(LOCATION)" />
+                            <CollectedIllustManage v-if="LocationUNIONTYPE.Collection.includes(LOCATION)"
+                                :location="LOCATION" :message="MESSAGE" />
                             <StyleControl />
                         </div>
                         <div class="main-message">
