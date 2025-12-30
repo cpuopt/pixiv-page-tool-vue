@@ -1,19 +1,19 @@
 <template>
-    <div>
-        <el-button v-show="!style_switch" class="main-button" type="primary" plain @click="style_switch = true">启用优化样式 </el-button>
-
-        <el-button v-show="style_switch" class="main-button" type="primary" plain @click="style_switch = false">关闭优化样式</el-button>
-    </div>
+  <div>
+    <el-switch v-model="style_switch" active-text="启用样式优化" inactive-text="关闭样式优化"></el-switch>
+  </div>
 </template>
 <script setup>
 import { ref, watch, watchEffect } from 'vue';
 import { Eleme } from '@element-plus/icons-vue';
 import { getLikedIllusts } from '../utils/pixivscripts';
+import { GM_setValue, GM_getValue } from '$';
 
-const style_switch = ref(false);
 
+const style_switch = ref(GM_getValue("style_switch", false));
 
 watchEffect(() => {
+  GM_setValue("style_switch", style_switch.value)
   if (style_switch.value) {
     document.body.setAttribute('styleControl', '')
   } else {

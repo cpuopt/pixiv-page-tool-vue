@@ -1,15 +1,15 @@
 <template>
     <div>
-        <el-button v-show="!HIDE_STATUS" :loading="loading_statue" class="main-button" type="primary" plain @click="HIDE_STATUS = true">隐藏已收藏作品 </el-button>
-
-        <el-button v-show="HIDE_STATUS" :loading="loading_statue" class="main-button" type="primary" plain @click="HIDE_STATUS = false">恢复显示已收藏作品</el-button>
+        <el-switch v-model="HIDE_STATUS" :loading="loading_statue" active-text="隐藏" inactive-text="显示" />
     </div>
 </template>
 <script setup>
 import { ref, watch } from 'vue';
 import { getLikedIllusts } from '../utils/pixivscripts';
+import { GM_setValue, GM_getValue } from '$';
 
 const loading_statue = ref(false);
+
 const loading = (statue) => {
     loading_statue.value = statue;
 };
@@ -75,8 +75,9 @@ const observer = new MutationObserver(async (mutationsList, observer) => {
     }, 1000);
 });
 
-const HIDE_STATUS = ref(false);
+const HIDE_STATUS = ref(GM_getValue("HIDE_STATUS", false));
 watch(HIDE_STATUS, async (NEW_STATUS, OLD_STATUS) => {
+    GM_setValue("HIDE_STATUS", NEW_STATUS);
     if (NEW_STATUS) {
         hideCollectedIllusts().then((num) => {
             loading(false);
@@ -94,5 +95,7 @@ watch(HIDE_STATUS, async (NEW_STATUS, OLD_STATUS) => {
         if (num > 0) Notification(`已恢复显示${num}个已收藏的插画`);
         loading(false);
     }
-});
+}, { immediate: true });
+
+
 </script>
