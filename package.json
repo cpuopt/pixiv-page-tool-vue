@@ -1,7 +1,7 @@
 {
   "name": "pixiv-page-tool",
   "private": true,
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -18,8 +18,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.3",
-    "node-sass": "^9.0.0",
-    "sass": "^1.74.1",
+    "sass": "^1.97.1",
     "sass-loader": "^14.1.1",
     "unplugin-auto-import": "^0.17.5",
     "unplugin-icons": "^0.18.5",
