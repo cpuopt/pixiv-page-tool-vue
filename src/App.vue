@@ -2,6 +2,7 @@
 import { reactive, ref, watch } from 'vue';
 import { unsafeWindow as window } from '$';
 import { ArrowLeftBold, ArrowRightBold, Collection, HomeFilled, Paperclip, CollectionTag } from '@element-plus/icons-vue';
+import { ElAside, ElButton, ElContainer, ElHeader, ElIcon, ElLink, ElMain, ElScrollbar } from 'element-plus';
 import { add2Collect } from './utils/pixivscripts';
 import HideCollectedIllust from './components/HideCollectedIllust.vue';
 import CollectedIllustManage from './components/CollectedIllustManage.vue';
@@ -147,7 +148,7 @@ window.onload = () => {
 
         <div style="display: flex; width: 100; height: 100%">
             <el-container>
-                <el-header height="30px" class="panel-header"><el-link :underline="false"
+                <el-header height="30px" class="panel-header"><el-link underline="never"
                         class="header-text">Pixiv-Page-Tool</el-link></el-header>
                 <el-container>
                     <el-aside class="panel-aside">

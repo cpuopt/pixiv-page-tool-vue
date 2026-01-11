@@ -46,6 +46,7 @@
 import { LocationTYPE, LocationUNIONTYPE } from "../utils/LocationType.js";
 
 import { ref, watch } from "vue";
+import { ElButton } from "element-plus";
 import { Eleme } from "@element-plus/icons-vue";
 import axios from "axios";
 import { addLog } from "../utils/message.js";
