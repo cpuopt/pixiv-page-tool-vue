@@ -49,9 +49,11 @@ const locationMap = {
 
     [LocationTYPE.CollectionRoot]: [/^\/users\/\d+\/bookmarks\/artworks(\?p=\d+?)?$/],
     [LocationTYPE.CollectionRootHide]: [/^\/users\/\d+\/bookmarks\/artworks\?(p=\d+\&)?(rest=hide)$/],
-    [LocationTYPE.CollectionUnTaged]: [/^\/users\/\d+\/bookmarks\/artworks\/未分類(\?p=\d+)?$/],
+    [LocationTYPE.CollectionUnTaged]: [/^\/users\/\d+\/bookmarks\/artworks\/未分類(?:\?(?:p=\d+|rest=show&mode=all))?$/],
     [LocationTYPE.CollectionUnTagedHide]: [/^\/users\/\d+\/bookmarks\/artworks\/未分類\?(p=\d+\&)?(rest=hide)$/],
-    [LocationTYPE.CollectionTag]: [/^\/users\/\d+\/bookmarks\/artworks\/[^\/\?(未分類)]+(\?p=\d+)?$/],
+    [LocationTYPE.CollectionTag]: [
+        /^\/users\/\d+\/bookmarks\/artworks\/(?!未分類(?:\?|$))[^\/\?]+(?:\?(?:p=\d+(?:&rest=show(?:&mode=all)?)?|rest=show(?:&mode=all)?))?$/
+    ],
     [LocationTYPE.CollectionTagHide]: [/^\/users\/\d+\/bookmarks\/artworks\/[^\/(未分類)]+\?(p=\d+\&)?rest=hide$/],
     [LocationTYPE.tags]: [/^\/tags\/[^\/]+$/],
     [LocationTYPE.tags_artworks]: [/^\/tags\/[^\/]+\/artworks/],
@@ -78,13 +80,19 @@ function test() {
         [LocationTYPE.UsersAll]: ['/users/87595559/artworks'],
         [LocationTYPE.CollectionRoot]: ['/users/57540329/bookmarks/artworks', '/users/57540329/bookmarks/artworks?p=2', '/users/57540329/bookmarks/artworks?p=10'],
         [LocationTYPE.CollectionRootHide]: ['/users/57540329/bookmarks/artworks?rest=hide', '/users/57540329/bookmarks/artworks?p=2&rest=hide', '/users/57540329/bookmarks/artworks?p=10&rest=hide'],
-        [LocationTYPE.CollectionTag]: ['/users/57540329/bookmarks/artworks/123123', '/users/57540329/bookmarks/artworks/123123?p=2', '/users/57540329/bookmarks/artworks/123123?p=10'],
+        [LocationTYPE.CollectionTag]: ['/users/57540329/bookmarks/artworks/123123',
+            '/users/57540329/bookmarks/artworks/123123?p=2',
+            '/users/57540329/bookmarks/artworks/123123?p=10',
+            '/users/57540329/bookmarks/artworks/20260412?p=2&rest=show',
+            '/users/57540329/bookmarks/artworks/20260412?rest=show&mode=all'
+        ],
         [LocationTYPE.CollectionTagHide]: [
             '/users/57540329/bookmarks/artworks/2023ood?rest=hide',
             '/users/57540329/bookmarks/artworks/2023ood?p=3&rest=hide',
             '/users/57540329/bookmarks/artworks/2023ood?p=10&rest=hide'
         ],
-        [LocationTYPE.CollectionUnTaged]: ['/users/65540505/bookmarks/artworks/未分類', '/users/65540505/bookmarks/artworks/未分類?p=2'],
+        [LocationTYPE.CollectionUnTaged]: ['/users/65540505/bookmarks/artworks/未分類',
+            '/users/65540505/bookmarks/artworks/未分類?p=2', '/users/65540505/bookmarks/artworks/未分類?rest=show&mode=all'],
         [LocationTYPE.CollectionUnTagedHide]: ['/users/65540505/bookmarks/artworks/未分類?rest=hide', '/users/65540505/bookmarks/artworks/未分類?p=2&rest=hide'],
         [LocationTYPE.CollectionTag]: [],
         [LocationTYPE.CollectionTagHide]: [],
