@@ -1,28 +1,43 @@
 @mixin ul-style {
     row-gap: 2px;
     column-gap: 2px;
-    & > li {
+    display: flex;
+    flex-wrap: wrap;
+
+    &>li,
+    &>div {
         margin: 0 !important;
         width: unset !important;
-        & > div {
+
+        &>div {
             position: relative;
             width: unset !important;
-            & > div:first-child {
+
+            &>div:first-child {
                 border-radius: 0 !important;
-                & > label {
-                    & > div {
-                        & > div {
+
+                &>label,
+                &>div {
+
+                    &>div {
+                        width: fit-content !important;
+
+                        &>div {
                             height: fit-content !important;
                             width: fit-content !important;
-                            & > a {
+
+                            &>a {
                                 height: fit-content !important;
                                 width: fit-content !important;
-                                & > div {
+
+                                &>div {
                                     width: fit-content !important;
                                     height: unset !important;
-                                    & > div {
+
+                                    &>div {
                                         width: fit-content !important;
-                                        & > img {
+
+                                        &>img {
                                             height: 20rem;
                                             width: auto;
                                             border-radius: 0 !important;
@@ -33,17 +48,22 @@
                         }
                     }
                 }
-                & > div {
+
+                &>div {
                     width: fit-content !important;
                     height: unset !important;
-                    & > a {
+
+                    &>a {
                         width: fit-content !important;
-                        & > div {
+
+                        &>div {
                             width: fit-content !important;
                             height: unset !important;
-                            & > div {
+
+                            &>div {
                                 width: fit-content !important;
-                                & > img {
+
+                                &>img {
                                     height: 20rem;
                                     width: auto;
                                     border-radius: 0 !important;
@@ -51,12 +71,12 @@
                             }
                         }
                     }
-                    & > div {
-                    }
+
+                    &>div {}
                 }
             }
 
-            & > div:last-child {
+            &>div:last-child {
                 /* 标题*/
                 margin-top: 0 !important;
                 position: absolute;
@@ -67,7 +87,8 @@
                 padding-inline: 1rem 1rem;
                 max-width: calc(100% - 32px);
                 overflow: hidden;
-                & > a {
+
+                &>a {
                     // text-shadow: 1px 1px 0 black, -1px 1px 0 black, 1px -1px 0 black, -1px -1px 0 black;
                     overflow: visible;
                     text-overflow: ellipsis;
@@ -86,45 +107,53 @@
     text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.6);
     padding-left: 1rem;
 }
+
 @mixin user-area {
     padding: 0 !important;
     padding-left: 1rem !important;
     margin-bottom: 4px !important;
     max-width: calc(100% - 32px) !important;
 }
+
 body[styleControl] {
     .userHomeWrapper {
         width: auto !important;
-        & > div:first-child {
-        }
-        & > div:nth-child(2),
-        & > div:nth-child(3) {
-            & > div {
+
+        &>div:first-child {}
+
+        &>div:nth-child(2),
+        &>div:nth-child(3) {
+            &>div {
                 width: auto !important;
-                & > ul {
+
+                &>ul {
                     @include ul-style;
                 }
             }
         }
     }
+
     .worksWrapper {
         width: 100%;
         padding-inline: 1rem;
-        & > ul {
+
+        &>ul {
             @include ul-style;
 
             li {
-                & > div {
-                    & > div:nth-child(2) {
+                &>div {
+                    &>div:nth-child(2) {
                         @include artwork-title-area;
                     }
-                    & > div:nth-child(3) {
+
+                    &>div:nth-child(3) {
                         @include user-area;
                     }
                 }
             }
         }
     }
+
     .sectionParentDiv {
         width: auto;
     }
@@ -133,18 +162,49 @@ body[styleControl] {
         /* 搜索页 */
         width: 100%;
         padding-inline: 1rem;
-        & > ul {
+
+        &>ul {
             display: flex;
             @include ul-style;
 
             li {
-                & > div {
-                    & > div:nth-child(2) {
+                &>div {
+                    &>div:nth-child(2) {
                         @include artwork-title-area;
                     }
-                    & > div:nth-child(3) {
+
+                    &>div:nth-child(3) {
                         @include user-area;
                     }
+                }
+            }
+        }
+    }
+
+    div[data-ga4-label='works_content'] {
+
+
+
+        /* 搜索页 -> 插画 */
+        &>div.grid-flow-dense {
+            @include ul-style;
+            width: 100% !important;
+            padding-inline: 1rem;
+
+            &>div[data-ga4-label="thumbnail"] {
+
+
+                &>div {
+
+                    &>div:nth-child(2) {
+                        @include artwork-title-area;
+                    }
+
+                    &>div:nth-child(3) {
+                        @include user-area;
+                    }
+
+
                 }
             }
         }
