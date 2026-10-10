@@ -44,8 +44,8 @@ const locationMap = {
     [LocationTYPE.NewIllustR18]: [/^\/bookmark_new_illust_r18.php/],
     [LocationTYPE.Mainpage]: [/^\/$/],
     [LocationTYPE.Artworks]: [/^\/artworks\/\d+$/],
-    [LocationTYPE.Users]: [/^\/users\/\d+$/],
-    [LocationTYPE.UsersAll]: [/^\/users\/\d+\/artworks$/],
+    [LocationTYPE.Users]: [/^\/(?:en\/)?users\/\d+\/?(?:\?.*)?$/],
+    [LocationTYPE.UsersAll]: [/^\/(?:en\/)?users\/\d+\/(?:artworks|illustrations|manga)\/?(?:\?.*)?$/],
 
     [LocationTYPE.CollectionRoot]: [/^\/users\/\d+\/bookmarks\/artworks(\?p=\d+?)?$/],
     [LocationTYPE.CollectionRootHide]: [/^\/users\/\d+\/bookmarks\/artworks\?(p=\d+\&)?(rest=hide)$/],

@@ -10,6 +10,7 @@ import { LocationTYPE, LocationUNIONTYPE, check } from './utils/LocationType.js'
 import chalk from 'chalk';
 import UserDouble from './svg/UserDouble.vue';
 import StyleControl from './components/StyleControl.vue';
+import ShowIllustUploadTime from './components/ShowIllustUploadTime.vue';
 import { _debounce_findSpecialEl, _debounce_replaceAllImage, _throttle_findSpecialEl, _throttle_replaceAllImage } from './utils/ShowLargerThumbnails.ts';
 /**
  * LOCATION 响应式对象 当前路由路径
@@ -42,6 +43,9 @@ history.pushState = _wr('pushState');
 window.addEventListener('pushState', function (e) {
     checkLocation();
 });
+window.addEventListener('popstate', checkLocation);
+window.addEventListener('replaceState', checkLocation);
+history.replaceState = _wr('replaceState');
 
 /**
  *  LOCATION 侦听器
@@ -199,6 +203,7 @@ window.onload = () => {
                             <HideCollectedIllust v-if="LocationUNIONTYPE.NewIllust.includes(LOCATION) || LocationUNIONTYPE.Search.includes(LOCATION) || LocationUNIONTYPE.Users.includes(LOCATION)" />
                             <CollectedIllustManage v-if="LocationUNIONTYPE.Collection.includes(LOCATION)" :location="LOCATION" :message="MESSAGE" />
                             <StyleControl />
+                            <ShowIllustUploadTime :active="LocationUNIONTYPE.Users.includes(LOCATION)" />
                         </div>
                         <div class="main-message">
                             <el-scrollbar>
